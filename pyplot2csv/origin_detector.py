@@ -6,6 +6,7 @@ import cv2
 import matplotlib.pyplot as plt
 from scipy import stats
 
+
 class OriginDetector:
     def __init__(self, img_array):
         self.img_array = img_array
@@ -28,7 +29,7 @@ class OriginDetector:
         max_val = max(input_list)
         output_li = []
         for i, val in enumerate(input_list):
-            if val > max_val-100:
+            if val > max_val - 100:
                 output_li.append(i)
         return output_li
 

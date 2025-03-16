@@ -21,7 +21,7 @@ class AxisScaleProcessor:
         if direction == 'top-left':
             crop_width = int(start_x * proportion) + 5
             crop_height = start_y + 5
-            start_x = int(start_x * (1-proportion))
+            start_x = int(start_x * (1 - proportion))
             start_y = 0
         elif direction == 'top-right':
             crop_width = self.img_width - start_x
@@ -36,8 +36,8 @@ class AxisScaleProcessor:
             crop_height = self.img_height - start_y
         else:
             raise ValueError("Invalid direction. Use 'top-left', 'top-right', 'bottom-left', or 'bottom-right'.")
-        print( start_x, start_y, crop_width, crop_height)
-        print( self.img_width, self.img_height)
+        print(start_x, start_y, crop_width, crop_height)
+        print(self.img_width, self.img_height)
         return start_x, start_y, crop_width, crop_height
 
     def crop_image(self, start_pixel, direction):
@@ -57,7 +57,8 @@ class AxisScaleProcessor:
                     # Try to convert the text to float
                     data['text'][i] = float(data['text'][i])
                     text_positions.append(
-                        (data['text'][i], data['left'][i], data['top'][i], data['width'][i], data['height'][i], data['conf'][i]))
+                        (data['text'][i], data['left'][i], data['top'][i], data['width'][i], data['height'][i],
+                         data['conf'][i]))
                 except:
                     pass  # If it can't be converted to float, skip it
 
@@ -79,11 +80,10 @@ class AxisScaleProcessor:
 
         return df
 
-
     def process_image(self, start_pixel, direction):
         """Crops the image based on the start pixel and direction, then extracts text with pixel positions."""
         cropped_img = self.crop_image(start_pixel, direction)
-        text_crude =  self.extract_text_with_coordinates(cropped_img)
+        text_crude = self.extract_text_with_coordinates(cropped_img)
 
         plt.figimage(cropped_img)
         plt.show()

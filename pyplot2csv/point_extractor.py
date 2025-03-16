@@ -3,6 +3,7 @@ import cv2
 import pandas as pd
 import matplotlib.pyplot as plt
 
+
 class PointExtractor:
     def __init__(self, img_array, origin_x, origin_y, scale_x, scale_y, target_color=(255, 0, 0)):
         self.img_array = img_array
