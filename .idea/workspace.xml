@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="172fced1-4d6c-40fb-8899-13faf8e442b6" name="Changes" comment="stuff">
-      <change afterPath="$PROJECT_DIR$/pyplot2csv/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyplot2csv/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyplot2csv/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyplot2csv/axis_scale_processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyplot2csv/axis_scale_processor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyplot2csv/image_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyplot2csv/image_reader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyplot2csv/origin_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyplot2csv/origin_detector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyplot2csv/point_extractor.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyplot2csv/point_extractor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +231,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1742161266945</updated>
-      <workItem from="1742161325072" duration="2536000" />
+      <workItem from="1742161325072" duration="3001000" />
     </task>
     <task id="LOCAL-00001" summary="stuff">
       <option name="closed" value="true" />
@@ -261,7 +257,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742162805955</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="stuff">
+      <option name="closed" value="true" />
+      <created>1742163902033</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1742163902033</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,6 +299,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="stuff" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/pyplot2csv$main.coverage" NAME="main Coverage Results" MODIFIED="1742163844633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pyplot2csv$main.coverage" NAME="main Coverage Results" MODIFIED="1742164308106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

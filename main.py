@@ -62,7 +62,7 @@ from pyplot2csv.point_extractor import PointExtractor
 
 
 def main():
-    image_path = "test_img_1.png"
+    image_path = "tests/test_img_1.png"
     target_color = (255, 0, 0)  # Target color for point extraction
 
     # Read the image

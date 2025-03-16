@@ -1,7 +1,7 @@
 # axis_scale_processor.py
 from sympy import refine
 
-from image_reader import ImageReader
+from .image_reader import ImageReader
 import pytesseract
 import pandas as pd
 import matplotlib.pyplot as plt
