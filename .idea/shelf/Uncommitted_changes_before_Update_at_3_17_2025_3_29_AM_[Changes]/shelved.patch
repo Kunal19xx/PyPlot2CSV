@@ -1,0 +1,40 @@
+Index: pyplot2csv/utils.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pyplot2csv/utils.py b/pyplot2csv/utils.py
+new file mode 100644
+--- /dev/null	(date 1742162145154)
++++ b/pyplot2csv/utils.py	(date 1742162145154)
+@@ -0,0 +1,9 @@
++import cv2
++import numpy as np
++
++def preprocess_image(image_path):
++    image = cv2.imread(image_path)
++    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
++    blurred = cv2.GaussianBlur(gray, (5, 5), 0)
++    _, thresh = cv2.threshold(blurred, 128, 255, cv2.THRESH_BINARY_INV)
++    return thresh
+Index: .idea/PyPlot2CSV.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"PYTHON_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\" />\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/PyPlot2CSV.iml b/.idea/PyPlot2CSV.iml
+--- a/.idea/PyPlot2CSV.iml	(revision 06377bdb6256b445045b3fdf19c434c42e9bf7fe)
++++ b/.idea/PyPlot2CSV.iml	(date 1742162065325)
+@@ -1,7 +1,9 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <module type="PYTHON_MODULE" version="4">
+   <component name="NewModuleRootManager">
+-    <content url="file://$MODULE_DIR$" />
++    <content url="file://$MODULE_DIR$">
++      <excludeFolder url="file://$MODULE_DIR$/venv" />
++    </content>
+     <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
