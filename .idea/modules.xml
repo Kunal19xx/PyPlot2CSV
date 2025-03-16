@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/pyplot2csv.iml" filepath="$PROJECT_DIR$/.idea/pyplot2csv.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/PyPlot2CSV.iml" filepath="$PROJECT_DIR$/.idea/PyPlot2CSV.iml" />
     </modules>
   </component>
 </project>
