@@ -4,10 +4,11 @@ from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 from itertools import product
 from .image_reader import ImageReader
+import time
 
 
 class PointExtractor:
-    def __init__(self, image_reader: ImageReader, center_: tuple, axis_info_: tuple):
+    def __init__(self, image_reader: ImageReader, center_: tuple, axis_info_: tuple, k=None):
         """Initialize with an ImageReader instance."""
         self.center_ = center_
         self.image_reader = image_reader
@@ -23,7 +24,7 @@ class PointExtractor:
         )[y_st:y_en, x_st:x_en, :3]  # Ensure RGB only
 
         self.df = None  # DataFrame to store extracted points
-        self.k = self.auto_select_k()
+        self.k = k + 1 if k is not None else self.auto_select_k()
         # plt.figimage(self.img_array )
         # plt.show()
 
@@ -45,9 +46,13 @@ class PointExtractor:
         k_values = list(range(2, 8))  # Fixed range: 2 to 7
 
         for k in k_values:
+            t1 = time.time()
             kmeans = KMeans(n_clusters=k, n_init=10, random_state=42)
             kmeans.fit(reshaped)
             wcss.append(kmeans.inertia_)  # Store WCSS (sum of squared distances)
+            t2 = time.time()
+            print(f"for k = {k} time taken {t2- t1}, with WCSS = {kmeans.inertia_}")
+
 
         # Find the elbow point (fast heuristic: max 2nd derivative)
         k_opt = self.find_elbow_point(k_values, wcss)
@@ -106,8 +111,8 @@ class PointExtractor:
         # Create DataFrame
         df = pd.DataFrame({"Y": filtered_y, "X": filtered_x, "RGB": rgb_keys})
 
-        # Pre-filter RGBs that appear in <1% of total image pixels
-        rgb_counts = df["RGB"].value_counts()
+        # Y inversion
+        df["Y"] = h - df["Y"]
 
         # Pivot table (faster, as we start from a smaller dataset)
         df = df.groupby(["X", "RGB"])["Y"].apply(list).unstack(fill_value=[])
@@ -170,13 +175,10 @@ class PointExtractor:
                 if y_list:
                     plt.scatter([x] * len(y_list), y_list, color=color, label=col, s=1)
 
-        plt.gca().invert_yaxis()
         plt.title("Extracted Points Colored by RGB")
         plt.xlabel("X")
         plt.ylabel("Y")
         plt.show()
-
-        # print(clr_data)
 
         x, y, z = zip(*clr_data)
         # Create a 3D figure
