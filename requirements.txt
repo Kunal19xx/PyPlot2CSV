@@ -1,6 +1,5 @@
 numpy
 pandas
-torch
 pillow
 opencv-python
 matplotlib
