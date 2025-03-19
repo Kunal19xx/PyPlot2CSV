@@ -10,7 +10,7 @@
 
 ## 🛠 Installation
 ```bash
-pip install pyplot2csv
+pip install git+https://github.com/yourusername/pyplot2csv.git
 ```
 
 ## 📌 Usage
