@@ -1,91 +1,53 @@
-# # main.py
-# import pandas as pd
-# import numpy as np
-#
-# from .image_reader import ImageReader
-# from .origin_detector import OriginDetector
-# from .axis_scale_processor import AxisScaleProcessor
-#
+# from pyplot2csv.image_reader import ImageReader
+# from pyplot2csv.origin_detector import OriginDetector
+# from pyplot2csv.axis_scale_processor import AxisScaleProcessor
+# from pyplot2csv.point_extractor import PointExtractor
 #
 #
 # def main():
-#     image_path = "test_img_1.png"
+#     image_path = "tests/test_img_3.png"
 #
 #     # Read the image
 #     image_reader = ImageReader(image_path)
-#     img = image_reader.get_image()
 #     img_array = image_reader.get_image_array()
+#     img = image_reader.get_image()
 #
 #     # Detect the origin
 #     origin_detector = OriginDetector(img_array)
 #     thresh = origin_detector.detect_edges()
 #     origin_x, origin_y = origin_detector.find_origin(thresh)
-#     origin_rgb = origin_detector.get_rgb_at_origin(img, origin_x, origin_y)
 #
-#     print(f"Detected Origin at (X: {origin_x}, Y: {origin_y})")
-#     print(f"RGB value at origin (X: {origin_x}, Y: {origin_y}): {origin_rgb}")
 #
-#     # Optionally, visualize the result
-#     origin_detector.visualize_origin(img, origin_x, origin_y)
+#
+#     # Process axis scale
 #     axis_scale_processor = AxisScaleProcessor(image_reader)
+#     scale_x, scale_y = 1.0, 1.0  # Assume scale detection logic exists
 #
-#     # Example input for cropping coordinates
-#     start_pixel = (origin_x, origin_y)  # Starting pixel (x, y)
-#     direction = 'bottom-right'  # Can be 'top-left', 'top-right', 'bottom-left', or 'bottom-right'
+#     # Extract points
+#     extractor = PointExtractor(image_reader, (origin_x, origin_y),(origin_detector.x_axis, origin_detector.y_axis))
+#     extractor.process_image()
+#     extractor.save_to_csv("output.csv")
+#     extractor.analyze_emptiness()
+#     extractor.plot_extracted_points(num_colors=20)
 #
-#     print(f"Cropping image from start pixel {start_pixel} towards {direction}")
-#
-#     # Process the image (crop and extract text)
-#     if direction == 'top-left':
-#         col_ix = 2
-#     else:
-#         col_ix = 1
-#     df = axis_scale_processor.process_image(start_pixel, direction)
-#     slope_df = pd.DataFrame((df[col_ix].values[:, None] - df[col_ix].values) / (df[0].values[:, None] - df[0].values))
-#     # slope_df = slope_df.replace([0, np.nan], 99999)
-#
-#     print(df)
-#     print(slope_df)
-#     # print(mode_values, mode_indexes)
-#
+#     print("Point extraction complete.")
 #
 # if __name__ == "__main__":
 #     main()
 
 
-from pyplot2csv.image_reader import ImageReader
-from pyplot2csv.origin_detector import OriginDetector
-from pyplot2csv.axis_scale_processor import AxisScaleProcessor
-from pyplot2csv.point_extractor import PointExtractor
-
+from pyplot2csv import extract_data
 
 def main():
-    image_path = "tests/test_img_3.png"
+    image_path = "tests/test_img_2.png"
+    output_file = "output.csv"
 
-    # Read the image
-    image_reader = ImageReader(image_path)
-    img_array = image_reader.get_image_array()
-    img = image_reader.get_image()
+    # Extract data and save to CSV
+    df = extract_data(image_path, output_file, 1)
 
-    # Detect the origin
-    origin_detector = OriginDetector(img_array)
-    thresh = origin_detector.detect_edges()
-    origin_x, origin_y = origin_detector.find_origin(thresh)
-
-    print(f"Detected Origin at (X: {origin_x}, Y: {origin_y})")
-
-    # Process axis scale
-    axis_scale_processor = AxisScaleProcessor(image_reader)
-    scale_x, scale_y = 1.0, 1.0  # Assume scale detection logic exists
-
-    # Extract points
-    extractor = PointExtractor(image_reader, (origin_x, origin_y),(origin_detector.x_axis, origin_detector.y_axis))
-    extractor.process_image()
-    extractor.save_to_csv("output.csv")
-    extractor.analyze_emptiness()
-    extractor.plot_extracted_points(num_colors=20)
-
-    print("Point extraction complete.")
+    # Display extracted data preview
+    print(df.head())
+    print(f"Data extracted and saved to {output_file}")
 
 if __name__ == "__main__":
     main()
