@@ -6,3 +6,4 @@ matplotlib
 pytesseract
 sympy
 scipy
+scikit-learn
