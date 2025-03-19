@@ -53,8 +53,6 @@
 #     main()
 
 
-import cv2
-import matplotlib.pyplot as plt
 from pyplot2csv.image_reader import ImageReader
 from pyplot2csv.origin_detector import OriginDetector
 from pyplot2csv.axis_scale_processor import AxisScaleProcessor
@@ -62,8 +60,7 @@ from pyplot2csv.point_extractor import PointExtractor
 
 
 def main():
-    image_path = "tests/test_img_1.png"
-    target_color = (255, 0, 0)  # Target color for point extraction
+    image_path = "tests/test_img_3.png"
 
     # Read the image
     image_reader = ImageReader(image_path)
@@ -82,13 +79,13 @@ def main():
     scale_x, scale_y = 1.0, 1.0  # Assume scale detection logic exists
 
     # Extract points
-    point_extractor = PointExtractor(img_array, origin_x, origin_y, scale_x, scale_y, target_color)
-    points_df = point_extractor.extract_points()
-    point_extractor.save_to_csv(points_df, "extracted_points.csv")
-    point_extractor.visualize_points(points_df)
+    extractor = PointExtractor(image_reader, (origin_x, origin_y),(origin_detector.x_axis, origin_detector.y_axis))
+    extractor.process_image()
+    extractor.save_to_csv("output.csv")
+    extractor.analyze_emptiness()
+    extractor.plot_extracted_points(num_colors=20)
 
     print("Point extraction complete.")
-
 
 if __name__ == "__main__":
     main()
